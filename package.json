@@ -1,6 +1,11 @@
 {
   "name": "tt",
   "version": "1.0.0",
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    }
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
