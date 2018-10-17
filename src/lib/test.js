@@ -1,4 +1,4 @@
-const say = function f(name) {
+const say = function (name) {
   const elem = document.createElement('div');
   elem.className = 'box';
   elem.id = 'test';
