@@ -1,0 +1,14 @@
+#header{
+	background: #8e24aa;
+	width: 100%;
+	height: 56px;
+}
+#upperPanel{
+	background: #8e24aa;
+	width: 100%;
+	height: 24px;
+}
+body{
+	height: 640px;
+	width: 360px;
+}
