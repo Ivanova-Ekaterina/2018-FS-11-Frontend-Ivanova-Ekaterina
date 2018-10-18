@@ -27,7 +27,7 @@ class MessageForm extends HTMLElement {
   static get observedAttributes() {
     return [
       'action',
-      'method'
+      'method',
     ];
   }
 
@@ -36,11 +36,11 @@ class MessageForm extends HTMLElement {
   }
 
   _initElements() {
-    let form = this.shadowRoot.querySelector('form');
-    let message = this.shadowRoot.querySelector('.result');
+    const form = this.shadowRoot.querySelector('form');
+    const message = this.shadowRoot.querySelector('.result');
     this._elements = {
       form: form,
-      message: message
+      message: message,
     };
   }
 
@@ -52,14 +52,14 @@ class MessageForm extends HTMLElement {
 
   _onSubmit(event) {
     this._elements.message.innerText = Array.from(this._elements.form.elements).map(
-      el => el.value
+      el => el.value,
     ).join(', ');
     event.preventDefault();
     return false;
   }
 
   _onKeyPress(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this._elements.form.dispatchEvent(new Event('submit'));
     }
   }

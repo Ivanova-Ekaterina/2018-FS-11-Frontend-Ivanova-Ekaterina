@@ -1,4 +1,4 @@
-import styles from './index.css';
+// import styles from './index.css';
 import shadowStyles from './shadow.css';
 
 const template = `
@@ -14,7 +14,7 @@ const template = `
 class FormInput extends HTMLElement {
   constructor() {
     super();
-    const shadowRoot = this.attachShadow( {mode: 'open'} );
+    const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.innerHTML = template;
     this._initElements();
     this._addHandlers();
@@ -25,7 +25,7 @@ class FormInput extends HTMLElement {
       'name',
       'placeholder',
       'value',
-      'disabled'
+      'disabled',
     ];
   }
 
@@ -34,12 +34,12 @@ class FormInput extends HTMLElement {
   }
 
   _initElements() {
-    let hiddenInput = document.createElement('input');
-    let input = this.shadowRoot.querySelector('input');
+    const hiddenInput = document.createElement('input');
+    const input = this.shadowRoot.querySelector('input');
     this.appendChild(hiddenInput);
     this._elements = {
       input: input,
-      hiddenInput: hiddenInput
+      hiddenInput: hiddenInput,
     };
   }
 
