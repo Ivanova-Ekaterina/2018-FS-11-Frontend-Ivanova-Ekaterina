@@ -1,3 +1,3 @@
-import FormInput from '/home/ekaterina/tt_front/src/lib/components/form/-input';
-import MessageForm from '/home/ekaterina/tt_front/src/lib/components/message-form';
+import FormInput from '../../lib/components/form/-input';
+import MessageForm from '../../lib/components/message-form';
 
