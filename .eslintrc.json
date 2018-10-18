@@ -5,6 +5,7 @@
 	"extends": "airbnb-base",
 	"rules":{
 		"no-underscore-dangle": "off",
-		"object-shorthand": "off"
+		"object-shorthand": "off",
+		"no-unused-vars": "off"
 	}
 }
