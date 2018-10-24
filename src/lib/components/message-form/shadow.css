@@ -12,8 +12,11 @@ form-input {
 	font-size: 16px;
 	font-family: sans-serif;
 	background-color: #f3e5f5;
-	width: 50%;
-	height: 56px;
+	width: auto;
+	max-width: 70%;
+	min-height: 30px;
+	padding: 15px;
+	height: auto;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	border:1px solid #e7ddea;
@@ -21,13 +24,50 @@ form-input {
 	align-self: flex-end;
 	align-items: center;
 }
+.friend {
+	color: black;
+	font-size: 16px;
+	font-family: sans-serif;
+	background-color: #ffffff;
+	width: auto;
+	max-width: 70%;
+	min-height: 30px;
+	padding: 15px;
+	height: auto;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	border:1px solid #e7ddea;
+	display: flex;
+	align-self: flex-start;
+	align-items: center;
+}
 .messages {
 	background-color: #f5f5f5;
 	width: 360px;
 	height: 504px;
 	display: flex;
-	flex-direction: column-reverse;
+	overflow-y: scroll;
+    justify-content: flex-end;
+	flex-direction: column;
+    vertical-align: bottom;
 }
 input[type=submit] {
 	visibility: collapse;
+}
+#attach,  #fileLabel, input[type=file], .position{
+	height: 24px;
+	width: 24px;
+	margin-right: 10px;
+	/*margin-left: 10px;*/
+}
+#attach, .position{
+	background-image: url(/home/ekaterina/tt_front/src/lib/img/attachment_24_px.svg);
+	background-color: red;
+}
+.imgMessage{
+	height: 100px;
+	width: 100px;
+}
+.icons{
+	display: flex;
 }

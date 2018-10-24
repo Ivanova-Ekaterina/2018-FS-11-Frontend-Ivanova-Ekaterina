@@ -3,13 +3,9 @@ import shadowStyles from './shadow.css';
 
 const template = `
   <style>${shadowStyles.toString()}</style>
-  <input />
-  <slot name="icon"></slot>
+  <input/>
+  <slot name="icon"><div class="${styles.icon}" /></slot>
 `;
-
-// const iconTemplate = `
-//  <div class="${styles.icon}" />
-// `;
 
 class FormInput extends HTMLElement {
   constructor() {
@@ -45,7 +41,14 @@ class FormInput extends HTMLElement {
 
   _addHandlers() {
     this._elements.input.addEventListener('input', this._onInput.bind(this));
+    this._elements.input.addEventListener('keypress', this._onKeyPress.bind(this));
   }
+
+    _onKeyPress(event) {
+        if (event.keyCode === 13) {
+            this._elements.input.value = '';
+        }
+    }
 
   _onInput() {
     this._elements.hiddenInput.value = this._elements.input.value;
