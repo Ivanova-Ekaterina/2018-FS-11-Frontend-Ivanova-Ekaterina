@@ -64,11 +64,10 @@ input[type=submit] {
 	margin-right: 10px;
 }
 #attach{
-	background-color: red;
-	background-image: url("./img/attachment_24_px.svg")
+	background-image: url("../../img/attachment_24_px.svg")
 }
 .position{
-	background-color: aqua;
+	background-image: url("../../img/geo.svg")
 }
 .imgMessage{
 	height: 100px;
