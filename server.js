@@ -2,11 +2,14 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const app = express();
 
-// default options
+
 app.use(fileUpload());
 
 app.post('/message', function(req, res) {
-  console.log('test');
+  if (req.body != null)
+  {
+    console.log(req.body);
+  }
   var result = Promise.resolve();
   if (typeof req.headers.origin === 'string') {
     res.set('Access-Control-Allow-Origin', req.headers.origin);
@@ -18,7 +21,7 @@ app.post('/message', function(req, res) {
     let sampleFile = req.files.attach;
     console.log(sampleFile.mimetype, sampleFile.md5());
 	result = new Promise((resolve, reject) => {
-      sampleFile.mv('/dev/null', function (err) {
+      sampleFile.mv('./dist/file', function (err) {
         if (err) reject(err);
 		else resolve();
 	  });

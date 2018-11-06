@@ -104,7 +104,7 @@ class MessageForm extends HTMLElement {
     const mess = this.shadowRoot.querySelector('#mess');
     if ((text != '') || (this._elements.img != '')) {
     	mess.appendChild(elem);
-   //   this.sendServer(text);
+      this.sendServer(text);
       this._elements.img = '';
     }
     const input = this.shadowRoot.querySelector('form-input');
@@ -180,19 +180,14 @@ class MessageForm extends HTMLElement {
     return false;
   }
 
- /* sendServer(text)
+  sendServer(text)
   {
           var formData = new FormData();
           formData.append("user", "kate");
           formData.append("message", text);
-          fetch('http://localhost:8081/message')
-                .then(function(response) {
-                alert(response.status.toString());
-        })      
-        .then(function(myJson) {
-                alert("fail");
-        });     
- } */ 	
+          fetch('http://localhost:8081/message', {method: 'POST', body: formData})
+               .then(result => console.log(result));      
+  } 	
 }
 
 customElements.define('message-form', MessageForm);
