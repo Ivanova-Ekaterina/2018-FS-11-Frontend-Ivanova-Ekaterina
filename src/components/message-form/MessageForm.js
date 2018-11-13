@@ -35,19 +35,15 @@ export class MessageForm extends Component {
     }
     render() {
         return (
-            <form onSubmit={ this.handleSubmit }>
-                <form className="drop">
-                    <div className="scroll">
-                        <div className = 'messages'>
-                            <div className = 'friend'>Доброе утро!</div>
-                            {this.state.messages.map((mes, index) =>
-                                <div className="result" key={index}>{mes.content + " " + mes.file}</div>
-                            )}
+            <form className="drop" onSubmit={ this.handleSubmit }>
+                <div className="scroll">
+                    <div className = 'messages'>
+                        <div className = 'friend'>Доброе утро!</div>
+                            {this.state.messages.map((mes, index) => <div className="result" key={index}>{mes.content + " " + mes.file}</div>
+                        )}
                         </div>
                     </div>
-                    <InputForm placeholder="Сообщение" className = 'input' updateData={this.updateData}>
-                    </InputForm>
-                </form>
+                <InputForm placeholder="Сообщение" className = 'input' updateData={this.updateData} />
             </form>
         );
     }

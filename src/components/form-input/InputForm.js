@@ -52,7 +52,7 @@ export class InputForm extends Component {
 
     render() {
         return (
-            <form onSubmit={ this.handleSubmit } className='forminput'>
+            <div onSubmit={ this.handleSubmit } className='forminput'>
                 <input type="text" value={ this.state.value } onChange={ this.handleChange } className='input'/>
                 <slot className="icons">
                     <div className={this.state.img ? "indicator_on" : "indicator_off"}></div>
@@ -62,7 +62,7 @@ export class InputForm extends Component {
                     </label>
                     <div className="icon" id="geo" onClick={this.handleGetPosition}/>
                 </slot>
-            </form>
+            </div>
         );
     }
 }
