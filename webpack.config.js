@@ -1,51 +1,49 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const sourceRoot = path.resolve(__dirname, 'src');
 
 module.exports = {
-	entry: {
-		create: sourceRoot + '/app/create/index.js'
-	},
+	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
-		//publicPath: '/static/',
-		filename: '[name]/bundle.js'
+		path: __dirname + '/dist',
+		publicPath: '/',
+		filename: 'bundle.js'
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			template: './src/index.html'
+		}),
+        new MiniCssExtractPlugin({
+            filename: 'MessageForm.css',
+			template: './src/MessageForm.css'
+        })
+	],
+	devServer: {
+		contentBase: './dist'
 	},
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				include: sourceRoot,
-				use: {
-					loader: 'babel-loader'
-				}
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: ['babel-loader']
 			},
-			{
-				test: /shadow\.css$/,
-				include: sourceRoot,
-				use: {
-					loader: 'css-loader'
-				}
-			},
-			{
-				test: /index\.css$/,
-				include: sourceRoot,
-				use: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
-			},
-			{
-				test: /\.(jpg|png|svg)$/, 
-				loader: 'url-loader'
-			}		
-		]
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+				]
+            },
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'url-loader'
+            }
+        ]
 	},
-	plugins: [
-		new ExtractTextPlugin({
-			filename: '[name]/style.css'
-		}),
-		new HtmlWebpackPlugin({
-			filename: 'create index.html',
-			template: './src/app/create/index.html'
-		})
-	]
+	resolve: {
+		extensions: ['*', '.js', '.jsx']
+	}
 };
