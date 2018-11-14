@@ -1,0 +1,48 @@
+.icons{
+    display: flex;
+    align-items: center;
+}
+input[type=submit] {
+    visibility: collapse;
+}
+.attach,  .fileLabel, input[type=file], .position{
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+}
+.attach{
+    background-image: url("../../images/attachment_24_px.svg");
+}
+.position{
+    background-image: url("../../images/baseline-my_location-24px.svg");
+}
+.icon, .indicator_on, .indicator_off{
+    height: 24px;
+    width: 24px;
+    margin: 3px;
+}
+.file {
+    visibility: hidden;
+}
+.forminput {
+    width: 360px;
+    height: 56px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input{
+    width: 300px;
+    height: 80%;
+}
+.indicator_on{
+    background-image: url("../../images/baseline-check-24px.svg");
+}
+.indicator_off{
+    background-image: url("../../images/baseline-close-24px.svg");
+}
+.filelabel{
+    height: 30px;
+    width: 30px;
+}

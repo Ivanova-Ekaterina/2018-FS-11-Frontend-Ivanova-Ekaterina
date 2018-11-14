@@ -1,0 +1,9 @@
+body{
+    height: 640px;
+    width: 360px;
+}
+.test{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}

@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-//controlled components
+import './head.css'
+
 export class Head extends Component {
     render() {
         return (
             <form>
                 <div id="upperPanel">
                     <div id="panelButtons">
-                        <div id="square" className="rectangle"></div>
-                        <div id="circle" className="rectangle"></div>
-                        <div id="triangle"></div>
+                        <div id="square" className="rectangle"/>
+                        <div id="circle" className="rectangle"/>
+                        <div id="triangle"/>
                     </div>
                 </div>
                 <div id="header">
-                    <div id="back" className="icon"></div>
-                    <div id="photo"></div>
+                    <div id="back" className="icon"/>
+                    <div id="photo"/>
                     <div id="user">
-                        <label id="name">Дженнифер</label>
+                        <label id="name">Дженифер</label>
                         <label id="lastTime">была 2 часа назад</label>
                     </div>
-                    <div id="search" className="icon"></div>
-                    <div id="options" className="icon"></div>
+                    <div id="search" className="icon"/>
+                    <div id="options" className="icon"/>
                 </div>
             </form>
         );

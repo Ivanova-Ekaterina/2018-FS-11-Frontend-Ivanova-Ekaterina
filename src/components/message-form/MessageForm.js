@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import ScrollToBottom from 'react-scroll-to-bottom';
 import { InputForm } from '../form-input';
-//controlled components
+import DropZone from 'react-drop-zone';
+import './MessageForm.css';
+
 
 export class MessageForm extends Component {
     constructor(props) {
@@ -11,6 +14,7 @@ export class MessageForm extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
     }
 
     handleChange(event) {
@@ -33,18 +37,36 @@ export class MessageForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
     }
+
+
+    handleDrop(file)
+    {
+        this.updateData('', false, file);
+    }
     render() {
         return (
-            <form className="drop" onSubmit={ this.handleSubmit }>
-                <div className="scroll">
+            <div className="drop" onSubmit={this.handleSubmit}>
+                <ScrollToBottom mode="bottom" className="scroll">
+                    <DropZone onDrop={(file, text) => this.handleDrop(file.name)}>
+                        {
+                            () =>
                     <div className = 'messages'>
-                        <div className = 'friend'>Доброе утро!</div>
-                            {this.state.messages.map((mes, index) => <div className="result" key={index}>{mes.content + " " + mes.file}</div>
-                        )}
-                        </div>
+                                <div className='friend'>Доброе утро!</div>
+                                {this.state.messages.map((mes, index) =>
+                                    <div className="result" key={index}>
+                                    {mes.content}
+                                    {mes.image === true ?
+                                        <img src={mes.file} alt="error" className="imgMessage"/> :
+                                        (mes.file === '' ? '' : 'file: ' + mes.file)
+                                    }
+                                    </div>
+                                )}
                     </div>
-                <InputForm placeholder="Сообщение" className = 'input' updateData={this.updateData} />
-            </form>
+                        }
+                    </DropZone>
+                </ScrollToBottom>
+                <InputForm placeholder="Сообщение" className = 'input' updateData={this.updateData}/>
+            </div>
         );
     }
 }

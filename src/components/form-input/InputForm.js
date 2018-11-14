@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import './InputForm.css'
 
-//controlled components
 export class InputForm extends Component {
     constructor(props) {
         super(props);
@@ -13,13 +13,20 @@ export class InputForm extends Component {
     }
 
     handleAttach(event) {
-        if (true)
-        {
-            this.setState({img: true})
-        }
         const url = URL.createObjectURL(event.target.files[0]);
-        this.setState({file: url});
-        this.handleSubmit();
+        const ext = event.target.value.split('.');
+        let image;
+        if ((ext[ext.length - 1] === 'jpg')
+            || (ext[ext.length - 1] === 'png')
+            || (ext[ext.length - 1] === 'svg'))
+        {
+            image = true;
+        }
+        else
+        {
+            image = false;
+        }
+        this.setState({file: url, img: image});
     }
 
     getPosition(option) {
@@ -52,17 +59,17 @@ export class InputForm extends Component {
 
     render() {
         return (
-            <div onSubmit={ this.handleSubmit } className='forminput'>
+            <form onSubmit={ this.handleSubmit } className='forminput'>
                 <input type="text" value={ this.state.value } onChange={ this.handleChange } className='input'/>
                 <slot className="icons">
-                    <div className={this.state.img ? "indicator_on" : "indicator_off"}></div>
-                    <label id="filelabel">
-                        <div className="icon" id="attach"/>
+                    <div className={this.state.file !== '' ? "indicator_on" : "indicator_off"}/>
+                    <label className="filelabel">
+                        <div className="icon attach"/>
                         <input type="file" className="file" onInput={this.handleAttach}/>
                     </label>
-                    <div className="icon" id="geo" onClick={this.handleGetPosition}/>
+                    <div className="icon position" onClick={this.handleGetPosition}/>
                 </slot>
-            </div>
+            </form>
         );
     }
 }
