@@ -1,3 +1,10 @@
-import say from './lib/test';
+import React from 'react';
+import './index.css';
+import ReactDOM from 'react-dom';
 
-say('world');
+import App from './App';
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);
