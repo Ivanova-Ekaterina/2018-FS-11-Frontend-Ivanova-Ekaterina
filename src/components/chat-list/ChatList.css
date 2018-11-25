@@ -1,0 +1,41 @@
+#header{
+    background: #8e24aa;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#upperPanel{
+    background: #8e24aa;
+    width: 100%;
+    height: 24px;
+}
+.rectangle{
+    background: #ce93d8;
+    width: 10px;
+    height: 10px;
+}
+#circle{
+    border-radius: 50%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+#triangle{
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #ce93d8;
+}
+#menu{
+    background-image: url(../../images/menu.svg);
+}
+#search{
+    background-image: url(../../images/filled.svg);
+    transform: rotate(180deg);
+}
+label{
+    color: white;
+    font-family: sans-serif-medium, sans-serif;
+}

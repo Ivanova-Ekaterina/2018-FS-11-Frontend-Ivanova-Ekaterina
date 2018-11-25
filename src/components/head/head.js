@@ -3,6 +3,7 @@ import './head.css'
 
 export class Head extends Component {
     render() {
+        const props = this.props;
         return (
             <form>
                 <div id="upperPanel">
@@ -16,7 +17,7 @@ export class Head extends Component {
                     <div id="back" className="icon"/>
                     <div id="photo"/>
                     <div id="user">
-                        <label id="name">Дженифер</label>
+                        <label id="name">{props.name}</label>
                         <label id="lastTime">была 2 часа назад</label>
                     </div>
                     <div id="search" className="icon"/>
