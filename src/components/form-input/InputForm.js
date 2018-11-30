@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import './InputForm.css'
+import * as actionTypes from '../../store/actions/actionTypes';
 
-export class InputForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '', name: props.name, placeholder: props.placeholder, img: false, file: ''};
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleAttach = this.handleAttach.bind(this);
-        this.handleGetPosition = this.handleGetPosition.bind(this);
-    }
+ class InputForm extends Component {
 
     handleAttach(event) {
         const url = URL.createObjectURL(event.target.files[0]);
         const ext = event.target.value.split('.');
-        let image;
         if ((ext[ext.length - 1] === 'jpg')
             || (ext[ext.length - 1] === 'png')
             || (ext[ext.length - 1] === 'svg'))
         {
-            image = true;
+            this.props.SendImage(url);
         }
         else
         {
-            image = false;
+            this.props.SendFile(url);
         }
-        this.setState({file: url, img: image});
     }
 
     getPosition(option) {
@@ -35,41 +26,55 @@ export class InputForm extends Component {
         });
     }
 
-    handleGetPosition(event) {
+    handleGetPosition() {
         if (navigator.geolocation) {
             const Promise = this.getPosition();
             Promise.then((position) => {
-                this.setState({value: `Latitude: ${ position.coords.latitude} Longitude: ${position.coords.longitude}`});
-                this.handleSubmit();
+                this.props.SendMessage(`Latitude: ${ position.coords.latitude} Longitude: ${position.coords.longitude}`);
             });
         } else {
             alert('Geolocation is not supported by this browser.');
         }
     }
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
-
-    handleSubmit() {
-        if ((this.state.value !== '')||(this.state.file !== '')) {
-            this.props.updateData(this.state.value, this.state.img, this.state.file);
-            this.setState({value: '', img: false, file: ''});
-        }
-    }
 
     render() {
         return (
-            <form onSubmit={ this.handleSubmit } className='forminput'>
-                <input type="text" value={ this.state.value } onChange={ this.handleChange } className='input'/>
+            <form  className='forminput'  onSubmit={(event) => {event.preventDefault();
+                                                                this.props.clearInput();
+                                                                if (this.props.value !== '')
+                                                                    this.props.SendMessage(this.props.value)}}>
+                <input type="text"  className='input' value={this.props.value} onChange = {(event) => this.props.Input(event.target.value)}/>
                 <slot className="icons">
-                    <div className={this.state.file !== '' ? "indicator_on" : "indicator_off"}/>
+                    <div className={this.props.file !== '' ? "indicator_on" : "indicator_off"}/>
                     <label className="filelabel">
                         <div className="icon attach"/>
-                        <input type="file" className="file" onInput={this.handleAttach}/>
+                        <input type="file" className="file" onInput={(event) => this.handleAttach(event)}/>
                     </label>
-                    <div className="icon position" onClick={this.handleGetPosition}/>
+                    <div className="icon position" onClick={(event) => this.handleGetPosition(event)}/>
                 </slot>
             </form>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+
+        value: state.msg.content,
+        file: state.msg.file,
+        id: state.msgs.id,
+        messages: state.msgs.messages
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        SendMessage: (text) => dispatch({type: actionTypes.SEND_TEXT, text: text}),
+        clearInput: () => dispatch({type: actionTypes.CLEAR}),
+        SendImage: (image) => dispatch({type: actionTypes.SEND_IMAGE, image}),
+        Input: (text) => dispatch({type: actionTypes.INPUT, text: text}),
+        SendFile: (file) => dispatch({type: actionTypes.SEND_FILE, file})
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputForm);
