@@ -30,8 +30,8 @@ class App extends Component {
                         </li>
                     </ul>
                     </div>
-                    <Route path='/profile' component={Profile} />
-                    <Route path='/chats' component={ChatList} />
+                    <Route path ='/profile' component={Profile} />
+                    <Route exact path='/chats' component={ChatList} />
                     <Route path='/chats/chat1' render={() => <Chat name="Kate"/>} />
                     <Route path='/chats/chat2' render={() => <Chat name="Sveta"/>} />
                 </div>
