@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Profile.css';
-export class Profile extends Component {
+import * as actionTypes from "../../store/actions/actionTypes";
+import connect from "react-redux/es/connect/connect";
+class Profile extends Component {
     render() {
         return (
             <div>
@@ -17,8 +19,24 @@ export class Profile extends Component {
                     </div>
                 </div>
                 <div className="profile">
+                    <label className="userName">{this.props.login}</label>
+                    <div className='photo'/>
+                    <label className='userName'>Info</label>
+                    <button type='submit' onClick={this.props.OnExit}>Выйти</button>
                 </div>
             </div>
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        login: state.user.user
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        OnExit: () => dispatch({type: actionTypes.USER_EXIT})
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
