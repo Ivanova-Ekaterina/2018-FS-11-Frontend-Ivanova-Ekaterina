@@ -7,7 +7,7 @@ export class Chat extends Component {
         return (
             <div>
                 <Head name={props.name}/>
-                <MessageForm/>
+                <MessageForm chat={props.chat} socket={props.socket}/>
             </div>
         );
 }

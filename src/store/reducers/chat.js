@@ -3,7 +3,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
     messages: [],
-    name: '',
+    name: 'me',
     new_messages: 0,
     id: 0
 };
@@ -12,7 +12,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SEND_FILE:
             return updateObject(state, {messages: state.messages.concat({
                     key: state.id + 1,
-                    user: 'kate',
+                    user: action.user,
+                    chat: action.chat,
                     image: '',
                     content: '',
                     file: action.file
@@ -20,7 +21,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SEND_IMAGE:
             return updateObject(state, {messages: state.messages.concat({
                     key: state.id + 1,
-                    user: 'kate',
+                    user: action.user,
+                    chat: action.chat,
                     image: true,
                     content: '',
                     file: action.image
@@ -28,7 +30,8 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.SEND_TEXT:
             return updateObject(state, {messages: state.messages.concat({
                     key: state.id + 1,
-                    user: 'kate',
+                    user: action.user,
+                    chat: action.chat,
                     image: '',
                     content: action.text,
                     file: ''

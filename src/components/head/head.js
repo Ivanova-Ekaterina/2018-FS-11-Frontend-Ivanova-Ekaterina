@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './head.css'
+import {Link} from "react-router-dom";
 
 export class Head extends Component {
     render() {
@@ -14,7 +15,7 @@ export class Head extends Component {
                     </div>
                 </div>
                 <div id="header">
-                    <div id="back" className="icon"/>
+                    <Link to to='/chats' ><div id="back" className="icon" onClick={this.back}/></Link>
                     <div id="photo"/>
                     <div id="user">
                         <label id="name">{props.name}</label>

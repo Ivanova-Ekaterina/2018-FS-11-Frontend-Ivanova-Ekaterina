@@ -3,5 +3,6 @@ export {
     authStart,
     authSuccess,
     auth,
-    authCheckState
+    authCheckState,
+    authDeleteState
 } from './Auth'

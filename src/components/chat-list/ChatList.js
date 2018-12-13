@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './ChatList.css';
+
 export class ChatList extends Component {
     render() {
         return (
@@ -13,7 +14,7 @@ export class ChatList extends Component {
                         </div>
                     </div>
                     <div id="header">
-                        <div id="menu" className="icon"/>
+                    <Link to='/'><div id="menu" className="icon"/></Link>
                         <div>
                             <label>Chats</label>
                         </div>

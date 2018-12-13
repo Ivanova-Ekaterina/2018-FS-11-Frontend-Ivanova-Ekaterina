@@ -17,6 +17,7 @@ class Auth extends Component {
                 value: '',
                 valid: false,
                 touched: false,
+                type: "",
                 validation: {
                     isRequired: true,
                     minLength: 6,
@@ -32,6 +33,7 @@ class Auth extends Component {
                 },
                 touched: false,
                 valid: false,
+                type: "password",
                 validation: {
                     isRequired: true,
                 }
@@ -77,7 +79,7 @@ class Auth extends Component {
                 return res
             }, {});
         this.props.onEnter(result.login, result.password);
-        //this.props.onAuth(result.login, result.password);
+        this.props.onAuth(result.login, result.password);
     };
     render() {
         const inputs = Object
@@ -88,6 +90,7 @@ class Auth extends Component {
                     key={key}
                     elementType={element.elementType}
                     value={element.value}
+                    type={element.type}
                     label={element.label}
                     changed={(event) => this.handleInput(event, key)}
                     placeholder={element.elementConfig.placeholder}/>
