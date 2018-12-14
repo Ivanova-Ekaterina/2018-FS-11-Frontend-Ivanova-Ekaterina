@@ -6,6 +6,7 @@ const input = (props) => {
     switch (props.elementType) {
         case 'input':
             inputElement = <input
+                type={props.type}
                 className= 'InputElement'
                 placeholder={props.placeholder}
                 value={props.value}

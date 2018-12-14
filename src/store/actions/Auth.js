@@ -6,7 +6,7 @@ axios.interceptors.response.use((response) => {
 }, (error) => {
   return Promise.resolve({
     data: {
-      token: 'sdfsdfsef34234wefsdf234',
+        token: 'sdfsdfsef34234wefsdf234'
     },
     status: 200,
     statusText: 'Ok',
@@ -34,6 +34,11 @@ export const authFailed = (err) => {
     error: err,
   }
 };
+export const authExit = () => {
+    return {
+        type: actionTypes.USER_EXIT
+    }
+};
 
 export const auth = (login, password) => {
   return dispatch => {
@@ -57,4 +62,11 @@ export const authCheckState = () => {
       dispatch(authSuccess(token));
     }
   }
+};
+
+export const authDeleteState = () => {
+    return dispatch => {
+        localStorage.removeItem('token');
+        dispatch(authExit());
+    }
 };

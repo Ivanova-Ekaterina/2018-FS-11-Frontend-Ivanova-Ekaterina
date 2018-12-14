@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './Profile.css';
+import {Link} from 'react-router-dom';
 import * as actionTypes from "../../store/actions/actionTypes";
 import connect from "react-redux/es/connect/connect";
+import * as actions from "../../store/actions";
 class Profile extends Component {
     render() {
         return (
@@ -19,10 +21,10 @@ class Profile extends Component {
                     </div>
                 </div>
                 <div className="profile">
-                    <label className="userName">{this.props.login}</label>
+                    <label className="userName">{this.props.login !== null ? this.props.login : "Kate"}</label>
                     <div className='photo'/>
                     <label className='userName'>Info</label>
-                    <button type='submit' onClick={this.props.OnExit}>Выйти</button>
+                    <Link to='/'><button type='submit' onClick={this.props.deleteToken}>Выйти</button></Link>
                 </div>
             </div>
         );
@@ -36,7 +38,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        OnExit: () => dispatch({type: actionTypes.USER_EXIT})
+       // OnExit: () => dispatch({type: actionTypes.USER_EXIT})
+        deleteToken: () => {dispatch(actions.authDeleteState());
+                            dispatch({type: actionTypes.DELETE_TOKEN})}
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

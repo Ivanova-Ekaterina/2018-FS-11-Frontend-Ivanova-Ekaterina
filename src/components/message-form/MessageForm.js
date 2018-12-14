@@ -8,21 +8,26 @@ import * as actionTypes from "../../store/actions/actionTypes";
 
 
 class MessageForm extends Component {
-
     handleDrop(file)
     {
         this.props.SendFile(file);
     }
     render() {
+        const props = this.props;
+        let this_mes = [];
+        this.props.messages.forEach(function(mes){
+            if (mes.chat === props.chat)
+                this_mes.push(mes);
+        });
         return (
             <div className="drop">
                 <ScrollToBottom mode="bottom" className="scroll">
-                    <DropZone onDrop={(file, text) => this.handleDrop(file.name)}>
+                    <DropZone onDrop={(file, text) => this.handleDrop(file.name) }>
                         { () =>
                             <div className='messages'>
-                                <div className='friend'>Доброе утро!</div>
-                                {this.props.messages.map((mes, id) =>
-                                    <div className="result" key={id}>
+                                {
+                                    this_mes.map((mes, id) =>
+                                    <div className={mes.user} key={id}>
                                         {mes.content}
                                         {mes.image === true ?
                                             <img src={mes.file} alt="error" className="imgMessage"/> :
@@ -34,7 +39,7 @@ class MessageForm extends Component {
                         }
                     </DropZone>
                 </ScrollToBottom>
-                <InputForm placeholder="Сообщение" className = 'input'/>
+                <InputForm placeholder="Сообщение" className = 'input' chat={props.chat} socket={props.socket}/>
             </div>
         );
     }

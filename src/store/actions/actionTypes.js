@@ -8,3 +8,4 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILED = 'AUTH_FAILED';
 export const USER_ENTER = 'USER_ENTER';
 export const USER_EXIT = 'USER_EXIT';
+export const DELETE_TOKEN = 'DELETE_TOKEN';
