@@ -16,6 +16,10 @@ input[type=submit] {
 .position{
     background-image: url("../../images/baseline-my_location-24px.svg");
 }
+.emoji{
+    background-image: url("../../images/round-face-24px.svg");
+
+}
 .icon, .indicator_on, .indicator_off{
     height: 24px;
     width: 24px;

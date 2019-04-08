@@ -15,13 +15,13 @@ class App extends Component {
         this.props.checkToken();
       //  const socket = new WebSocket('ws://localhost:8080');
         this.socket.onopen = () => {
-            this.socket.send(JSON.stringify({data: "Hi", chat: "1"}));
+            this.socket.send(JSON.stringify({data: "Hi", chat: "1", emojiList: []}));
             console.log('ok');
         };
         this.socket.onmessage = (message) => {
-           let mes =  JSON.parse(message.data);
-           console.log(mes);
-          this.props.SendMessage(mes.data, mes.chat);
+            let mes =  JSON.parse(message.data);
+            console.log(mes);
+            this.props.SendMessage(mes.data, mes.chat, mes.emojiList);
         };
 
     }

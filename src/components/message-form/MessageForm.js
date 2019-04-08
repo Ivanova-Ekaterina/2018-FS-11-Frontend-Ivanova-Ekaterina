@@ -5,7 +5,7 @@ import DropZone from 'react-drop-zone';
 import './MessageForm.css';
 import {connect} from 'react-redux';
 import * as actionTypes from "../../store/actions/actionTypes";
-
+import Emoji from "../emoji/emoji";
 
 class MessageForm extends Component {
     handleDrop(file)
@@ -15,9 +15,12 @@ class MessageForm extends Component {
     render() {
         const props = this.props;
         let this_mes = [];
+        let this_emoji = [];
         this.props.messages.forEach(function(mes){
-            if (mes.chat === props.chat)
+            if (mes.chat === props.chat) {
                 this_mes.push(mes);
+                this_emoji.push(mes.emojiList);
+            }
         });
         return (
             <div className="drop">
@@ -28,8 +31,15 @@ class MessageForm extends Component {
                                 {
                                     this_mes.map((mes, id) =>
                                     <div className={mes.user} key={id}>
-                                        {mes.content}
-                                        {mes.image === true ?
+
+                                        {mes.emojiList.length !== 0 ? mes.content.substring(0, this_emoji[id][0].position): mes.content}
+                                        {this_emoji[id].map((em, iid,arr) =>
+                                            <div className='emojiClass' key={iid}>
+                                                <Emoji name={em.name.substring(1)}/><label className='emojiLabel'>
+                                                    {mes.content.substring(arr[iid].position, iid !== arr.length - 1? arr[iid+1].position: mes.content.length).replace(em.name, '')}
+                                                </label>
+                                            </div>)}
+                                       {mes.image === true ?
                                             <img src={mes.file} alt="error" className="imgMessage"/> :
                                             (mes.file === '' ? '' : 'file: ' + mes.file)
                                         }

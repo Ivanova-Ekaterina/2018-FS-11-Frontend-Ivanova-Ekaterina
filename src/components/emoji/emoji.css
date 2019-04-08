@@ -1,0 +1,31 @@
+.sprite{
+    height: 32px;
+    width: 32px;
+}
+i.avocado{
+    background: url('../../images/food/avocado.png?sprite');
+}
+i.bacon{
+    background: url('../../images/food/bacon.png?sprite');
+}
+i.broccoli{
+    background: url('../../images/food/broccoli.png?sprite');
+}
+i.wine-glass{
+    background: url('../../images/food/wine-glass.png?sprite');
+}
+i.pizza{
+    background: url('../../images/food/pizza.png?sprite');
+}
+i.hot-pepper{
+    background: url('../../images/food/hot-pepper.png?sprite');
+}
+i.green-apple{
+    background: url('../../images/food/green-apple.png?sprite');
+}
+i.angry-face{
+    background: url('../../images/people/angry-face.png?sprite');
+}
+i.smiling-face{
+    background: url('../../images/people/smiling-face.png?sprite');
+}
