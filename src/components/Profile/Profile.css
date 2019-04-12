@@ -40,6 +40,10 @@ label{
     width: 360px;
     align-items: center;
 }
+.profile_label{
+    margin-left: 50px;
+    margin-right: 74px;
+}
 .userName{
     color: #8e24aa;
 }
@@ -47,4 +51,9 @@ label{
     height: 200px;
     width: 200px;
     background: url(../../images/emotarTomato.png) center;
+}
+.profile_menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

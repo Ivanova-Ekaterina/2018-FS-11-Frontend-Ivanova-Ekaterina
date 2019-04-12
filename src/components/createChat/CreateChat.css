@@ -1,0 +1,15 @@
+.labelCreateChat{
+    color: black;
+}
+.createChat{
+    background-color: #d095cf;
+    border: solid 3px #8e24aa;
+    border-radius: 5%;
+}
+.CreateLi{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+    background-color: #d095cf;
+    width: 100%;
+}

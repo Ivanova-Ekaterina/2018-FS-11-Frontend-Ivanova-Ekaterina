@@ -7,7 +7,7 @@ import * as actionTypes from '../../store/actions/actionTypes';
  class InputForm extends Component {
 
      state = {
-         showEmoji: false
+         showEmoji: true
      };
     handleAttach(event, chat) {
         const url = URL.createObjectURL(event.target.files[0]);
@@ -49,9 +49,10 @@ import * as actionTypes from '../../store/actions/actionTypes';
         const props = this.props;
         return (
             <div>
-                <EmojiPanel hidden={this.state.showEmoji} chat={props.chat}/>
+                <EmojiPanel hidden={this.state.showEmoji} chat={props.chat} />
                 <form  className='forminput'  onSubmit={(event) => {event.preventDefault();
                                                         this.props.clearInput();
+                                                        this.setState({showEmoji: true});
                                                         if (this.props.value !== ''){
                                                             this.props.socket.send(JSON.stringify({data: this.props.value, chat: this.props.chat, emojiList: this.props.emojiList}));
                                                             this.props.SendMessage(this.props.value, props.chat, this.props.emojiList)}}}>

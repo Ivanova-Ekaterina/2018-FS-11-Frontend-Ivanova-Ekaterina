@@ -50,3 +50,10 @@ input[type=submit] {
     height: 30px;
     width: 30px;
 }
+.emojiPanel{
+    position: absolute;
+    top: 600px;
+}
+.hidden{
+    border: 0px;
+}

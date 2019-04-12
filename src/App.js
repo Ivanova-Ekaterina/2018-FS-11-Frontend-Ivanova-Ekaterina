@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import { ChatList } from "./components/chat-list/ChatList";
+import ChatList from "./components/chat-list/ChatList";
 import {Chat} from "./components/Chat/Chat";
 import {Enter} from "./components/Enter/Enter";
 import Profile from "./components/Profile/Profile";
@@ -8,6 +8,8 @@ import './App.css';
 import * as actions from './store/actions';
 import connect from "react-redux/es/connect/connect";
 import * as actionTypes from "./store/actions/actionTypes";
+import StartPage from "./components/StartPage/StartPage";
+import SignUp from "./components/SignUp/SignUp";
 
 class App extends Component {
     socket = new WebSocket('ws://localhost:8080');
@@ -25,50 +27,29 @@ class App extends Component {
         };
 
     }
-    disableChats(e){
-       // if(this.props.isAuthorized === false) {
-        if(this.props.token === null) {
-            e.preventDefault();
-        }
-    }
     render() {
+        const props = this.props;
         let route =
             (
-                <Route path='/enter' exact component={Enter} />
-            )
+                <Route exact path='/enter' component={Enter} />
+            );
         //if(this.props.isAuthorized === true) {
-        if(this.props.token !== null) {
+        if(props.token !== null) {
             route = (
-                    <Route path='/enter' exact component={Profile} />
+                    <Route exact path='/enter' component={Profile} />
             )
         }
         return (
             <Router>
-                <div className="startPage">
-                    <div className="Head">
-                        <div id="upperPanel">
-                            <div id="panelButtons">
-                                <div id="square" className="rectangle"/>
-                                <div id="circle" className="rectangle"/>
-                                <div id="triangle"/>
-                            </div>
-                        </div>
-                        <div id="header">
-                            <label id="name">Main</label>
-                        </div>
-                    <ul>
-                        <li>
-                            <Link to='/enter'>Profile</Link>
-                        </li>
-                        <li className={this.props.token === null ? 'disable': ''}>
-                            <Link to='/chats' onClick={(event) => this.disableChats(event)}>Chats</Link>
-                        </li>
-                    </ul>
-                    </div>
+                <div>
                     {route}
+                    {console.log("chats", props.chat)}
+                    {props.chats !== undefined ?  (props.chats.map((el, id) =>
+                        <Route exact path={'/chats/' + el.topic} render={() => <Chat  key={id} name={el.topic} chat={el.id} socket={this.socket}/>} />))
+                     : ''}
+                    <Route exact path='/' component={StartPage} />
                     <Route exact path='/chats' component={ChatList} />
-                    <Route path='/chats/chat1' render={() => <Chat name="Kate" chat="1" socket={this.socket}/>} />
-                    <Route path='/chats/chat2' render={() => <Chat name="Sveta" chat="2" socket={this.socket}/>} />
+                    <Route exact path='/singUp' component={SignUp} />
                 </div>
             </Router>
         );
@@ -77,6 +58,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
+        chats: state.chatList.chatList,
         isAuthorized: state.user.isAuthorized
     }
 };

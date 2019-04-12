@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Enter.css';
 import Auth from "../auth/Auth"
+import {Link} from "react-router-dom";
 export class Enter extends Component {
     render() {
         return (
@@ -12,10 +13,10 @@ export class Enter extends Component {
                         <div id="triangle"/>
                     </div>
                 </div>
-                <div id="header">
-                    <div>
-                        <label>Profile</label>
-                    </div>
+                <div id="header" className='EnterHeader'>
+                        <Link to ='/' ><div id="back" className="icon" onClick={this.back}/></Link>
+                        <label className="header_label">Sign In</label>
+                        <div className="icon"/>
                 </div>
                 <div className="profile">
                     <Auth/>
