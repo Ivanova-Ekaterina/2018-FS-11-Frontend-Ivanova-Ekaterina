@@ -16,7 +16,8 @@ const reducer = ( state = initialState, action ) => {
                     chat: action.chat,
                     image: '',
                     content: '',
-                    file: action.file
+                    file: action.file,
+                    emojiList: []
             })});
         case actionTypes.SEND_IMAGE:
             return updateObject(state, {messages: state.messages.concat({
@@ -25,7 +26,8 @@ const reducer = ( state = initialState, action ) => {
                     chat: action.chat,
                     image: true,
                     content: '',
-                    file: action.image
+                    file: action.image,
+                    emojiList: []
         })});
         case actionTypes.SEND_TEXT:
             return updateObject(state, {messages: state.messages.concat({
@@ -34,7 +36,8 @@ const reducer = ( state = initialState, action ) => {
                     chat: action.chat,
                     image: '',
                     content: action.text,
-                    file: ''
+                    file: '',
+                    emojiList: action.emojiList
                 })});
     }
     return state;

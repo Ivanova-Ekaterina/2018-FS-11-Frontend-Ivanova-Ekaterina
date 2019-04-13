@@ -3,6 +3,7 @@ export const SEND_IMAGE = 'SEND_IMAGE';
 export const SEND_FILE = 'SEND_FILE';
 export const CLEAR = 'CLEAR';
 export const INPUT = 'INPUT';
+export const ADD_EMOJI = 'ADD_EMOJI';
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILED = 'AUTH_FAILED';

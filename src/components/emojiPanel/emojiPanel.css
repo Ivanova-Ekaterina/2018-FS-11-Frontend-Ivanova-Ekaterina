@@ -1,0 +1,8 @@
+.emojiPanel {
+    display: flex;
+    border-width: 3px;
+    border: solid;
+    border-color: #8e24aa;
+    border-radius: 10px;
+    background-color: #ce93d8;
+}

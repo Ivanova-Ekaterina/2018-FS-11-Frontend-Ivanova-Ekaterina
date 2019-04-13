@@ -13,7 +13,7 @@ wss.on('connection', ws => {
             mes.chat = "2";
         else
             mes.chat = "1";
-        ws.send(JSON.stringify({data: mes.data, chat: mes.chat}));
+        ws.send(JSON.stringify({data: mes.data, chat: mes.chat, emojiList: mes.emojiList}));
     });
-    ws.send(JSON.stringify({data:"Доброе утро!", chat: "1"}));
+    ws.send(JSON.stringify({data:"Доброе утро!", chat: "1", emojiList: []}));
 });
