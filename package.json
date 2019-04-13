@@ -78,7 +78,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "css-sprite-loader": "^0.3.1"
+    "css-sprite-loader": "^0.3.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
   },
   "jest": {
     "collectCoverageFrom": [
