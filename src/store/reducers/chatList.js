@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const reducer = ( state = initialState, action) => {
-    let data = [];
     switch ( action.type ) {
         case actionTypes.GET_CHATS:
             return updateObject(state, {chatList: action.chats})

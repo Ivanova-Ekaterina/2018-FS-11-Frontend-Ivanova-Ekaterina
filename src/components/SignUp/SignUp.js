@@ -5,25 +5,11 @@ import Input from "../Input/Input";
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import * as actionTypes from "../../store/actions/actionTypes";
-import * as config from "../../config";
-const axios = require('axios');
-function createUser(nick, name) {
-    axios.get(config.URL +'create_user/' + nick + '&' + name, '', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err);
-        });
-}
+import workerCode from "../../SharedWorker";
 
 class SignUp extends Component {
     state = {
+        worker: this.getSharedWorker(),
         loginForm: {
             login: {
                 label: 'Введите логин',
@@ -104,7 +90,6 @@ class SignUp extends Component {
     };
 
     handleFormConfirm = (event) => {
-      //  event.preventDefault();
         const result = Object
             .keys(this.state.loginForm)
             .reduce((res, key) => {
@@ -112,9 +97,20 @@ class SignUp extends Component {
                 return res
             }, {});
         this.props.onEnter(result.login, result.password);
-        createUser(result.login, result.password);
-        this.props.onAuth(result.login, result.password);
+        this.createUser(result.login, result.name);
         this.setState({user : result.login});
+        this.props.onAuth(result.login, result.password);
+    };
+    createUser(nick, name){
+        let req = {
+            reqData: 'create_user',
+            nick: nick,
+            name: name
+        };
+        this.state.worker.then((worker)=>{
+            console.log(worker);
+            worker.port.postMessage(req);
+        });
     };
     render() {
         const inputs = Object
@@ -156,6 +152,26 @@ class SignUp extends Component {
                 </div>
             </div>
         );
+    }
+    getSharedWorker () {
+        const workerFile = new Blob([`(${workerCode})(self)`], {type: 'text/javascript'});
+        return new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', (event) => {
+                const worker = new SharedWorker(event.target.result);
+                worker.port.addEventListener('message', this.onWorkerCreateUser.bind(this));
+                worker.port.start();
+                window.addEventListener('beforeunload', () => {
+                    worker.port.postMessage('disconnect');
+                });
+                res(worker);
+            });
+            reader.addEventListener('error', rej);
+            reader.readAsDataURL(workerFile);
+        });
+    }
+    onWorkerCreateUser (event) {
+        console.log('User', event.data);
     }
 }
 
