@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
+import styles from './styles.module.css';
 import * as actionTypes from "../../store/actions/actionTypes";
 import workerCode from '../../SharedWorker';
 
@@ -26,23 +27,23 @@ class StartPage extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="startPage">
-                <div className="Head">
-                    <div id="upperPanel">
-                        <div id="panelButtons">
-                            <div id="square" className="rectangle"/>
-                            <div id="circle" className="rectangle"/>
-                            <div id="triangle"/>
+            <div className={styles.startPage}>
+                <div className={styles.Head}>
+                    <div className={styles.upperPanel}>
+                        <div className={styles.panelButtons}>
+                            <div className={`${styles.rectangle} ${styles.square}`}/>
+                            <div className={`${styles.rectangle} ${styles.circle}`}/>
+                            <div className={styles.triangle}/>
                         </div>
                     </div>
-                    <div id="header">
-                        <label id="name">Main</label>
+                    <div className={styles.header}>
+                        <label className={styles.name}>Main</label>
                     </div>
                     <ul>
-                        <li>
+                        <li className={styles.start_li}>
                             <Link to='/enter'>Profile</Link>
                         </li>
-                        <li className={props.token === null ? 'disable': ''}>
+                        <li className={`${props.token === null ? `${styles.disable}`: ''} ${styles.start_li}`}>
                             <Link to='/chats' onClick={(event) => this.disableChats(event)}>Chats</Link>
                         </li>
                     </ul>

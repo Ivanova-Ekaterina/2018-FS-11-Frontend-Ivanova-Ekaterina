@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import './auth.css';
-import './auth.css';
+import styles from './styles.module.css';
 import {Link} from 'react-router-dom';
 import Input from "../Input/Input";
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import * as actionTypes from "../../store/actions/actionTypes";
-import * as config from "../../config";
 import workerCode from "../../SharedWorker";
 
 
@@ -120,13 +118,15 @@ class Auth extends Component {
         return (
                <div className='auth'>
                    {inputs}
+                   <div className={styles.vk_auth}>
                    <button disabled={!this.state.valid} type='submit' onClick={this.handleFormConfirm}>Войти</button>
-                   <div className='vk_auth'>
-                       <label className='vk_label'>Войти с помощью</label>
-                       <div className='vk_img' onClick={vk_auth()}/>
-                   </div>
-                   <div className='sign_up'>
+
+                       <label className={styles.vk_label}>Войти с помощью</label>
+                       <div className={styles.vk_img} onClick={vk_auth()}/>
+
+                   <div className={styles.sign_up}>
                        <Link to='/singUp'><button type='submit'>Регистрация</button></Link>
+                   </div>
                    </div>
                </div>
         );

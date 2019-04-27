@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './SignUp.css';
+import styles from './styles.module.css';
 import {Link, Route} from 'react-router-dom';
 import Input from "../Input/Input";
 import {connect} from 'react-redux';
@@ -128,24 +128,24 @@ class SignUp extends Component {
             });
         return (
             <div>
-                <div id="upperPanel">
-                    <div id="panelButtons">
-                        <div id="square" className="rectangle"/>
-                        <div id="circle" className="rectangle"/>
-                        <div id="triangle"/>
+                <div className={styles.upperPanel}>
+                    <div className={styles.panelButtons}>
+                        <div className={`${styles.rectangle} ${styles.square}`}/>
+                        <div className={`${styles.rectangle} ${styles.circle}`}/>
+                        <div className={styles.triangle}/>
                     </div>
                 </div>
-                <div id="header">
-                    <div className="signUpHeader">
-                        <Link to ='/' ><div id="back" className="icon" onClick={this.back}/></Link>
+                <div className={styles.header}>
+                    <div className={styles.signUpHeader}>
+                        <Link to ='/' ><div id="back" className={styles.icon} onClick={this.back}/></Link>
                         <label>Sign Up</label>
-                        <div className="icon"/>
+                        <div className={styles.icon}/>
                     </div>
                 </div>
-                <div className="profile">
-                    <div className='sign'>
+                <div className={styles.profile}>
+                    <div className={styles.sign}>
                         {inputs}
-                        <div className='sign_in'>
+                        <div className={styles.sign_in}>
                             <Link to = '/enter' ><button type='submit'onClick={this.handleFormConfirm}> Регистрация</button></Link>
                     </div>
                     </div>

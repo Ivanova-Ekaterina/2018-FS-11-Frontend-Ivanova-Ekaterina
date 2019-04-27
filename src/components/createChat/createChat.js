@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './CreateChat.css';
+import styles from './styles.module.css';
 import {Link, Route} from 'react-router-dom';
-import * as config from "../../config";
 import * as actionTypes from "../../store/actions/actionTypes";
 import connect from "react-redux/es/connect/connect";
 import workerCode from "../../SharedWorker";
@@ -39,16 +38,16 @@ class CreateChat extends Component {
     render() {
         const props = this.props;
         return (
-            <div hidden={props.hidden} className="createChat">
-                <li className="CreateLi">
-                    <label className="labelCreateChat">Название чата</label>
+            <div hidden={props.hidden} className={styles.createChat}>
+                <li className={styles.CreateLi}>
+                    <label className={styles.labelCreateChat}>Название чата</label>
                 <input type="text" onChange={(event) => this.handleInputTopic(event)}/>
                 </li>
-                <li className="CreateLi">
-                    <label className="labelCreateChat">Ник участника</label>
+                <li className={styles.CreateLi}>
+                    <label className={styles.labelCreateChat}>Ник участника</label>
                     <input type="text" onChange={(event) => this.handleInputNick(event)}/>
                 </li>
-                <li className="CreateLi">
+                <li className={styles.CreateLi}>
                     <Link to='/'>
                         <button type="submit" onClick={(e) => this.createChat(e, this.props.chats, this.state.topic, this.state.nick2, this.props.nick1, this.props.addChat)}>Создать</button>
                     </Link>

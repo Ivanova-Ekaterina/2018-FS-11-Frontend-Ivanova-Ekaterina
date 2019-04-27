@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Profile.css';
+import styles from './styles.module.css';
 import {Link} from 'react-router-dom';
 import * as actionTypes from "../../store/actions/actionTypes";
 import connect from "react-redux/es/connect/connect";
@@ -8,23 +8,23 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <div id="upperPanel">
-                    <div id="panelButtons">
-                        <div id="square" className="rectangle"/>
-                        <div id="circle" className="rectangle"/>
-                        <div id="triangle"/>
+                <div className={styles.upperPanel}>
+                    <div className={styles.panelButtons}>
+                        <div className={`${styles.rectangle} ${styles.square}`}/>
+                        <div className={`${styles.rectangle} ${styles.circle}`}/>
+                        <div className={styles.triangle}/>
                     </div>
                 </div>
-                <div id="header">
-                    <div className='profile_menu'>
-                        <Link to to='/' ><div id="back" className="icon" onClick={this.back}/></Link>
-                        <label className="profile_label">Profile</label>
+                <div className={styles.header}>
+                    <div className={styles.profile_menu}>
+                        <Link to to='/' ><div className={`${styles.icon} ${styles.back}`} onClick={this.back}/></Link>
+                        <label className={styles.profile_label}>Profile</label>
                     </div>
                 </div>
-                <div className="profile">
-                    <label className="userName">{this.props.login !== null ? this.props.login : "Kate"}</label>
-                    <div className='photo'/>
-                    <label className='userName'>Info</label>
+                <div className={styles.profile}>
+                    <label className={styles.userName}>{this.props.login !== null ? this.props.login : "Kate"}</label>
+                    <div className={styles.photo}/>
+                    <label className={styles.userName}>Info</label>
                     <Link to='/'><button type='submit' onClick={this.props.deleteToken}>Выйти</button></Link>
                 </div>
             </div>
@@ -39,7 +39,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-       // OnExit: () => dispatch({type: actionTypes.USER_EXIT})
         deleteToken: () => {dispatch(actions.authDeleteState());
                             dispatch({type: actionTypes.DELETE_TOKEN})}
     }

@@ -5,6 +5,8 @@
     border-color: #8e24aa;
     border-radius: 10px;
     background-color: #ce93d8;
+    position: absolute;
+    top: 600px;
 }
 .hidden{
     border-width: 0px;

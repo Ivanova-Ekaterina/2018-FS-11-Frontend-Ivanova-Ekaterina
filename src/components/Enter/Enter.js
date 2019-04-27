@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
-import './Enter.css';
+import styles from './styles.module.css';
 import Auth from "../auth/Auth"
 import {Link} from "react-router-dom";
 export class Enter extends Component {
     render() {
         return (
             <div>
-                <div id="upperPanel">
-                    <div id="panelButtons">
-                        <div id="square" className="rectangle"/>
-                        <div id="circle" className="rectangle"/>
-                        <div id="triangle"/>
+                <div className={styles.upperPanel}>
+                    <div className={styles.panelButtons}>
+                        <div className={`${styles.rectangle} ${styles.square}`}/>
+                        <div className={` ${styles.rectangle} ${styles.circle}`}/>
+                        <div className={styles.triangle}/>
                     </div>
                 </div>
-                <div id="header" className='EnterHeader'>
-                        <Link to ='/' ><div id="back" className="icon" onClick={this.back}/></Link>
-                        <label className="header_label">Sign In</label>
-                        <div className="icon"/>
+                <div className={`${styles.EnterHeader} ${styles.header}`}>
+                        <Link to ='/' ><div id="back" className={styles.icon} onClick={this.back}/></Link>
+                        <label className={styles.header_label}>Sign In</label>
+                        <div className={styles.icon}/>
                 </div>
-                <div className="profile">
+                <div className={styles.profile}>
                     <Auth/>
                 </div>
             </div>

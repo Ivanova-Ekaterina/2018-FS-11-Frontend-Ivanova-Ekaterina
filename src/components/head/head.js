@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './head.css'
+import styles from './styles.module.css';
 import {Link} from "react-router-dom";
 
 export class Head extends Component {
@@ -7,22 +7,22 @@ export class Head extends Component {
         const props = this.props;
         return (
             <form>
-                <div id="upperPanel">
-                    <div id="panelButtons">
-                        <div id="square" className="rectangle"/>
-                        <div id="circle" className="rectangle"/>
-                        <div id="triangle"/>
+                <div className={styles.upperPanel}>
+                    <div className={styles.panelButtons}>
+                        <div className={`${styles.rectangle} ${styles.square}`}/>
+                        <div className={`${styles.rectangle} ${styles.circle}`}/>
+                        <div className={styles.triangle}/>
                     </div>
                 </div>
-                <div id="header">
-                    <Link to to='/chats' ><div id="back" className="icon" onClick={this.back}/></Link>
-                    <div id="photo"/>
-                    <div id="user">
-                        <label id="name">{props.name}</label>
-                        <label id="lastTime">была 2 часа назад</label>
+                <div className={styles.header}>
+                    <Link to to='/chats' ><div className={`${styles.icon} ${styles.back}`} onClick={this.back}/></Link>
+                    <div className={styles.photo}/>
+                    <div className={styles.user}>
+                        <label className={styles.name}>{props.name}</label>
+                        <label className={styles.lastTime}>была 2 часа назад</label>
                     </div>
-                    <div id="search" className="icon"/>
-                    <div id="options" className="icon"/>
+                    <div className={`${styles.icon} ${styles.search}`}/>
+                    <div className={`${styles.icon} ${styles.options}`}/>
                 </div>
             </form>
         );

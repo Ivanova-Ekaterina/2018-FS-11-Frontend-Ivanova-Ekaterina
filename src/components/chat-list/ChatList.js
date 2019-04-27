@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import './ChatList.css';
+import styles from './styles.module.css';
 import * as actionTypes from "../../store/actions/actionTypes";
 import {connect} from 'react-redux';
 import CreateChat from "../createChat/createChat";
@@ -19,30 +19,30 @@ class ChatList extends Component {
         let chatItems = [];
         if (props.chats !== undefined) {
             chatItems = props.chats.map((el, id) =>
-                <li key={id}>
+                <li key={id} className={styles.chat_li}>
                     <Link to={'/chats/' + el.topic}>{el.topic}</Link>
                 </li>
             );
         }
         return (
                 <div>
-                    <div id="upperPanel">
-                        <div id="panelButtons">
-                            <div id="square" className="rectangle"/>
-                            <div id="circle" className="rectangle"/>
-                            <div id="triangle"/>
+                    <div className={styles.upperPanel}>
+                        <div className={styles.panelButtons}>
+                            <div className={`${styles.rectangle} ${styles.square}`}/>
+                            <div className={`${styles.rectangle} ${styles.circle}`}/>
+                            <div className={styles.triangle}/>
                         </div>
                     </div>
-                    <div id="header">
-                    <Link to='/'><div id="menu" className="icon"/></Link>
+                    <div className={styles.header}>
+                    <Link to='/'><div className={`${styles.icon} ${styles.menu}`}/></Link>
                         <div>
                             <label>Chats</label>
                         </div>
-                        <div id="search" className="icon"/>
-                        <div id="add_chat" className="icon" onClick={(event) => this.handleOpenCreateChat(event)}/>
+                        <div className={`${styles.icon} ${styles.search}`}/>
+                        <div className={`${styles.icon} ${styles.add_chat}`} onClick={(event) => this.handleOpenCreateChat(event)}/>
                     </div>
-                    <CreateChat hidden={this.state.showCreateChat} />
-                    <ul className="chatListUl">
+                    <CreateChat hidden={this.state.showCreateChat} className={styles.createChat}/>
+                    <ul className={styles.chatListUl}>
                         {chatItems}
                     </ul>
                 </div>

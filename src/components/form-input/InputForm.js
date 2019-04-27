@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {EmojiPanel} from "../emojiPanel/emojiPanel";
-import './InputForm.css'
+import styles from './styles.module.css';
 import * as actionTypes from '../../store/actions/actionTypes';
 
  class InputForm extends Component {
@@ -50,22 +50,23 @@ import * as actionTypes from '../../store/actions/actionTypes';
         return (
             <div>
                 <EmojiPanel hidden={this.state.showEmoji} chat={props.chat} />
-                <form  className='forminput'  onSubmit={(event) => {event.preventDefault();
+
+                <form  className={styles.forminput}  onSubmit={(event) => {event.preventDefault();
                                                         this.props.clearInput();
                                                         this.setState({showEmoji: true});
                                                         if (this.props.value !== ''){
                                                             this.props.socket.send(JSON.stringify({data: this.props.value, chat: this.props.chat, emojiList: this.props.emojiList}));
                                                             this.props.SendMessage(this.props.value, props.chat, this.props.emojiList)}}}>
 
-                    <input type="text"  className='input' value={this.props.value} onChange = {(event) => this.props.Input(event.target.value)}/>
-                    <slot className="icons">
-                        <div className={this.props.file !== '' ? "indicator_on" : "indicator_off"}/>
-                        <label className="filelabel">
-                           <div className="icon attach"/>
-                            <input type="file" className="file" onInput={(event) => this.handleAttach(event, props.chat)}/>
+                    <input type="text"  className={styles.input} value={this.props.value} onChange = {(event) => this.props.Input(event.target.value)}/>
+                    <slot className={styles.icons}>
+                        <div className={this.props.file !== '' ? `${styles.indicator_on} ${styles.pulse}` : `${styles.indicator_off} ${styles.pulse}`}/>
+                        <label className={styles.filelabel}>
+                           <div className={`${styles.icon} ${styles.attach} ${styles.pulse}`}/>
+                            <input type="file" className={styles.file} onInput={(event) => this.handleAttach(event, props.chat)}/>
                         </label>
-                        <div className="icon position" onClick={(event) => this.handleGetPosition(event, props.chat, this.props.emojiList)}/>
-                        <div className="icon emoji" onClick={(event) => this.handleOpenEmoji(event)}/>
+                        <div className={`${styles.icon} ${styles.position} ${styles.pulse}`} onClick={(event) => this.handleGetPosition(event, props.chat, this.props.emojiList)}/>
+                        <div className={`${styles.icon} ${styles.emoji} ${styles.pulse}`} onClick={(event) => this.handleOpenEmoji(event)}/>
                     </slot>
                 </form>
             </div>

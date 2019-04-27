@@ -1,4 +1,4 @@
-#header{
+.header{
     background: #8e24aa;
     width: 100%;
     height: 56px;
@@ -6,7 +6,7 @@
     justify-content: space-around;
     align-items: center;
 }
-#upperPanel{
+.upperPanel{
     background: #8e24aa;
     width: 100%;
     height: 24px;
@@ -16,12 +16,12 @@
     width: 10px;
     height: 10px;
 }
-#circle{
+.circle{
     border-radius: 50%;
     margin-left: 8px;
     margin-right: 8px;
 }
-#triangle{
+.triangle{
     width: 0px;
     height: 0px;
     border-left: 5px solid transparent;
@@ -42,4 +42,9 @@ label{
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+.icon{
+    height: 24px;
+    width: 24px;
+    margin: 3px;
 }
