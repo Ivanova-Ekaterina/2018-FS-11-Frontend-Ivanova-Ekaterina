@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './emoji.css';
+import styles from './styles.module.css';
 import {connect} from 'react-redux';
 import * as actionTypes from "../../store/actions/actionTypes";
 
@@ -10,7 +10,7 @@ class Emoji extends Component {
     render() {
         const props = this.props;
         return (
-            <i className={props.name + " sprite"} hidden={props.hidden} onClick={(event) => this.addEmoji(event, props.name, props.value.length)}/>
+            <i className={`${styles[props.name]} ${styles.sprite}`} hidden={props.hidden} onClick={(event) => this.addEmoji(event, props.name, props.value.length)}/>
         );
     }
 }

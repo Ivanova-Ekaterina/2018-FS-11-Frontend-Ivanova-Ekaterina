@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
+
 }
 .vk_auth{
     display: flex;
@@ -19,4 +21,9 @@
 .vk_label{
     margin-top: 20px;
     color: black;
+}
+.sign_up{
+    display: flex;
+    align-content: center;
+    align-items: center;
 }

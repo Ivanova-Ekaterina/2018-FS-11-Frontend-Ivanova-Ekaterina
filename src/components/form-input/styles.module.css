@@ -54,6 +54,43 @@ input[type=submit] {
     position: absolute;
     top: 600px;
 }
+.pulse:hover{
+    animation: none;
+}
 .hidden{
     border: 0px;
+}
+.input:focus{
+    background-color: #ce93d8;
+    transition: background-color 4s;
+}
+.pulse {
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(153, 0, 255, 0.4);
+    animation: pulse 1s infinite;
+}
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(153, 0, 255, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(153, 0, 255, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(153, 0, 255, 0);
+    }
+}
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(153, 0, 255, 0.4);
+        box-shadow: 0 0 0 0 rgba(153, 0, 255, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(153, 0, 255, 0);
+        box-shadow: 0 0 0 10px rgba(153, 0, 255, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(153, 0, 255, 0);
+        box-shadow: 0 0 0 0 rgba(153, 0, 255, 0);
+    }
 }

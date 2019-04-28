@@ -1,4 +1,4 @@
-#header{
+.header{
     background: #8e24aa;
     width: 100%;
     height: 56px;
@@ -6,11 +6,11 @@
     justify-content: space-around;
     align-items: center;
 }
-#user{
+.user{
     display: flex;
     flex-direction: column;
 }
-#upperPanel{
+.upperPanel{
     background: #8e24aa;
     width: 100%;
     height: 24px;
@@ -20,48 +20,53 @@
     width: 10px;
     height: 10px;
 }
-#circle{
+.circle{
     border-radius: 50%;
     margin-left: 8px;
     margin-right: 8px;
 }
-#triangle{
+.triangle{
     width: 0px;
     height: 0px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 10px solid #ce93d8;
 }
-#back{
+.back{
     background-image: url(../../images/arrow_back_24_px.svg);
 }
-#search{
+.search{
     background-image: url(../../images/filled.svg);
     transform: rotate(180deg);
 }
-#options{
+.options{
     background-image: url(../../images/more_vert_24_px.svg);
 }
-#photo{
+.photo{
     background: url(../../images/emotarTomato.png) center;
     background-size: 40px 40px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
 }
-#name{
+.name{
     font-size: 20px;
 }
-#lastTime{
+.lastTime{
     font-size: 12px;
 }
 label{
     color: white;
     font-family: sans-serif-medium;
 }
-#panelButtons{
+.panelButtons{
     display: flex;
     align-items: center;
     justify-content: flex-end;
     padding: 7px;
+}
+.icon{
+    height: 24px;
+    width: 24px;
+    margin: 3px;
 }
