@@ -6,3 +6,6 @@
     border-radius: 10px;
     background-color: #ce93d8;
 }
+.hidden{
+    border-width: 0px;
+}

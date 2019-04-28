@@ -1,39 +1,28 @@
 import React, {Component} from 'react';
-import './auth.css';
-import './auth.css';
-import {Link} from 'react-router-dom';
+import './SignUp.css';
+import {Link, Route} from 'react-router-dom';
 import Input from "../Input/Input";
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import * as actionTypes from "../../store/actions/actionTypes";
 import * as config from "../../config";
-
 const axios = require('axios');
-function findUser(nick, psw,deleteToken, Auth) {
-    axios.get(config.URL +'find_user/' + nick, '', {
+function createUser(nick, name) {
+    axios.get(config.URL +'create_user/' + nick + '&' + name, '', {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         }
     })
         .then(res => {
-            if (res.data.user_id === undefined)
-            {
-                deleteToken();
-            }
-            else {
-                Auth(nick, psw);
-            }
+            console.log(res)
         })
         .catch(err => {
             console.log(err);
         });
 }
 
-function vk_auth() {
-
-}
-class Auth extends Component {
+class SignUp extends Component {
     state = {
         loginForm: {
             login: {
@@ -49,7 +38,22 @@ class Auth extends Component {
                 type: "",
                 validation: {
                     isRequired: true,
-                    minLength: 2,
+                    minLength: 6,
+                }
+            },
+            name: {
+                elementType: 'input',
+                value: '',
+                label: 'Введите имя',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Имя'
+                },
+                touched: false,
+                valid: false,
+                type: "text",
+                validation: {
+                    isRequired: true,
                 }
             },
             password: {
@@ -96,11 +100,11 @@ class Auth extends Component {
         });
         newFormData[key]= InputData;
         this.setState({loginForm: newFormData,
-                        valid: !invalid});
+            valid: !invalid});
     };
 
     handleFormConfirm = (event) => {
-        event.preventDefault();
+      //  event.preventDefault();
         const result = Object
             .keys(this.state.loginForm)
             .reduce((res, key) => {
@@ -108,10 +112,9 @@ class Auth extends Component {
                 return res
             }, {});
         this.props.onEnter(result.login, result.password);
-        findUser(result.login, result.password ,this.props.deleteToken, this.props.onAuth);
-        //    this.props.onAuth(result.login, result.password);
+        createUser(result.login, result.password);
+        this.props.onAuth(result.login, result.password);
         this.setState({user : result.login});
-
     };
     render() {
         const inputs = Object
@@ -128,17 +131,30 @@ class Auth extends Component {
                     placeholder={element.elementConfig.placeholder}/>
             });
         return (
-               <div className='auth'>
-                   {inputs}
-                   <button disabled={!this.state.valid} type='submit' onClick={this.handleFormConfirm}>Войти</button>
-                   <div className='vk_auth'>
-                       <label className='vk_label'>Войти с помощью</label>
-                       <div className='vk_img' onClick={vk_auth()}/>
-                   </div>
-                   <div className='sign_up'>
-                       <Link to='/singUp'><button type='submit'>Регистрация</button></Link>
-                   </div>
-               </div>
+            <div>
+                <div id="upperPanel">
+                    <div id="panelButtons">
+                        <div id="square" className="rectangle"/>
+                        <div id="circle" className="rectangle"/>
+                        <div id="triangle"/>
+                    </div>
+                </div>
+                <div id="header">
+                    <div className="signUpHeader">
+                        <Link to ='/' ><div id="back" className="icon" onClick={this.back}/></Link>
+                        <label>Sign Up</label>
+                        <div className="icon"/>
+                    </div>
+                </div>
+                <div className="profile">
+                    <div className='sign'>
+                        {inputs}
+                        <div className='sign_in'>
+                            <Link to = '/enter' ><button type='submit'onClick={this.handleFormConfirm}> Регистрация</button></Link>
+                    </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
@@ -146,9 +162,7 @@ class Auth extends Component {
 const mapDispatchToProps = (dispatch) => {
     return  {
         onAuth: (login, password) => dispatch(actions.auth(login, password)),
-        onEnter: (login, password) => dispatch({type: actionTypes.USER_ENTER, login, password}),
-        deleteToken: () => {dispatch(actions.authDeleteState());
-            dispatch({type: actionTypes.DELETE_TOKEN})}
+        onEnter: (login, password) => dispatch({type: actionTypes.USER_ENTER, login, password})
     }
 };
 
@@ -158,4 +172,4 @@ const mapStateToProps = state => {
         user: state.user.user
     }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

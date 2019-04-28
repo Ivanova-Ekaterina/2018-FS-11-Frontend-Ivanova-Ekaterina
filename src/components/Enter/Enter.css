@@ -37,3 +37,9 @@ label{
     height: 610px;
     width: 360px;
 }
+.EnterHeader
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

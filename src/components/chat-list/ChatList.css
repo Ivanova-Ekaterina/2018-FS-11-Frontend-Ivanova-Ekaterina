@@ -35,7 +35,19 @@
     background-image: url(../../images/filled.svg);
     transform: rotate(180deg);
 }
+#add_chat{
+    background-image: url(../../images/round-add-24px.svg);
+}
 label{
     color: white;
     font-family: sans-serif-medium, sans-serif;
+}
+.chatListUl{
+    overflow: scroll;
+}
+.createChat{
+    position: absolute;
+    top: 110px;
+    width: 290px;
+    height: 200px;
 }

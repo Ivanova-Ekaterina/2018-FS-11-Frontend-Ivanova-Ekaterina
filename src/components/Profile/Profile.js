@@ -16,8 +16,9 @@ class Profile extends Component {
                     </div>
                 </div>
                 <div id="header">
-                    <div>
-                        <label>Profile</label>
+                    <div className='profile_menu'>
+                        <Link to to='/' ><div id="back" className="icon" onClick={this.back}/></Link>
+                        <label className="profile_label">Profile</label>
                     </div>
                 </div>
                 <div className="profile">

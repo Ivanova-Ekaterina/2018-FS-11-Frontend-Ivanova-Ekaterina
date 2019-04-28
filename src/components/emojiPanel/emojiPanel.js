@@ -5,7 +5,7 @@ export class EmojiPanel extends Component {
     render() {
         const props = this.props;
         return (
-            <div className="emojiPanel" hidden={props.hidden} >
+            <div className={props.hidden ? "emojiPanel hidden": "emojiPanel"} hidden={props.hidden} >
                 <Emoji name="smiling-face" hidden={props.hidden} chat={props.chat}/>
                 <Emoji name="angry-face" hidden={props.hidden} chat={props.chat}/>
                 <Emoji name="avocado" hidden={props.hidden} chat={props.chat}/>
