@@ -2,34 +2,26 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
 import * as actionTypes from "../../store/actions/actionTypes";
-import * as config from "../../config"
-const axios = require('axios');
-
-function getChats(add) {
-    axios.get(config.URL +'get_chats_list', '', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    })
-        .then(res => {
-            if (res.data instanceof Array){
-                add(res.data);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
-}
+import workerCode from '../../SharedWorker';
 
 class StartPage extends Component {
     disableChats(e){
-        getChats(this.props.loadChat);
-        // if(this.props.isAuthorized === false) {
+        var req = {
+            reqData: 'get_chats'
+        };
+        this.state.worker.then((worker)=>{
+            console.log(worker);
+            worker.port.postMessage(req);
+        });
         if(this.props.token === null) {
             e.preventDefault();
-
         }
+    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            worker: this.getSharedWorker()
+        };
     }
     render() {
         const props = this.props;
@@ -57,6 +49,29 @@ class StartPage extends Component {
                 </div>
             </div>
         );
+    }
+    getSharedWorker () {
+        const workerFile = new Blob([`(${workerCode})(self)`], {type: 'text/javascript'});
+        return new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', (event) => {
+                const worker = new SharedWorker(event.target.result);
+                worker.port.addEventListener('message', this.onWorkerList.bind(this));
+                worker.port.start();
+                window.addEventListener('beforeunload', () => {
+                    worker.port.postMessage('disconnect');
+                });
+                res(worker);
+            });
+            reader.addEventListener('error', rej);
+            reader.readAsDataURL(workerFile);
+        });
+    }
+    onWorkerList (event) {
+        console.log(event.data);
+        if (Array.isArray(event.data)) {
+            this.props.loadChat(event.data);
+        }
     }
 }
 const mapStateToProps = state => {

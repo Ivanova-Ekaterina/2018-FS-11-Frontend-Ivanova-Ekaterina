@@ -7,34 +7,15 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
 import * as actionTypes from "../../store/actions/actionTypes";
 import * as config from "../../config";
+import workerCode from "../../SharedWorker";
 
-const axios = require('axios');
-function findUser(nick, psw,deleteToken, Auth) {
-    axios.get(config.URL +'find_user/' + nick, '', {
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        }
-    })
-        .then(res => {
-            if (res.data.user_id === undefined)
-            {
-                deleteToken();
-            }
-            else {
-                Auth(nick, psw);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
-}
 
 function vk_auth() {
 
 }
 class Auth extends Component {
     state = {
+        worker: this.getSharedWorker(),
         loginForm: {
             login: {
                 label: 'Введите логин',
@@ -70,6 +51,16 @@ class Auth extends Component {
         },
         valid: false,
     };
+    findUser(nick) {
+        var req = {
+            reqData: 'find_user',
+            nick: nick
+        };
+        this.state.worker.then((worker)=>{
+            console.log(worker);
+            worker.port.postMessage(req);
+        });
+    }
     checkValidity = (value, rule) => {
         let isValid = true;
         if (rule.isRequired) {
@@ -108,8 +99,7 @@ class Auth extends Component {
                 return res
             }, {});
         this.props.onEnter(result.login, result.password);
-        findUser(result.login, result.password ,this.props.deleteToken, this.props.onAuth);
-        //    this.props.onAuth(result.login, result.password);
+        this.findUser(result.login);
         this.setState({user : result.login});
 
     };
@@ -140,6 +130,34 @@ class Auth extends Component {
                    </div>
                </div>
         );
+    }
+    getSharedWorker () {
+        const workerFile = new Blob([`(${workerCode})(self)`], {type: 'text/javascript'});
+        return new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', (event) => {
+                const worker = new SharedWorker(event.target.result);
+                worker.port.addEventListener('message', this.onWorkerFindUser.bind(this));
+                worker.port.start();
+                window.addEventListener('beforeunload', () => {
+                    worker.port.postMessage('disconnect');
+                });
+                res(worker);
+            });
+            reader.addEventListener('error', rej);
+            reader.readAsDataURL(workerFile);
+        });
+    }
+    onWorkerFindUser (event) {
+
+        console.log('Auth', event.data);
+        if (event.data.user_id === undefined)
+        {
+            this.props.deleteToken();
+        }
+        else {
+            this.props.onAuth(this.state.loginForm.login, this.state.loginForm.password);
+        }
     }
 }
 
