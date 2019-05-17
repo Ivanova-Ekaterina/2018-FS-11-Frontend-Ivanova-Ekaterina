@@ -7,7 +7,7 @@ import workerCode from '../../SharedWorker';
 
 class StartPage extends Component {
     disableChats(e){
-        var req = {
+        const req = {
             reqData: 'get_chats'
         };
         this.state.worker.then((worker)=>{

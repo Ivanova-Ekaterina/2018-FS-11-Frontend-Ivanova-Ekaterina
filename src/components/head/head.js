@@ -15,7 +15,7 @@ export class Head extends Component {
                     </div>
                 </div>
                 <div className={styles.header}>
-                    <Link to to='/chats' ><div className={`${styles.icon} ${styles.back}`} onClick={this.back}/></Link>
+                    <Link to='/chats' ><div className={`${styles.icon} ${styles.back}`} onClick={this.back}/></Link>
                     <div className={styles.photo}/>
                     <div className={styles.user}>
                         <label className={styles.name}>{props.name}</label>

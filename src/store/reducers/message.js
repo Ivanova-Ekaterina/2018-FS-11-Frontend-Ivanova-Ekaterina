@@ -17,8 +17,9 @@ const reducer = ( state = initialState, action ) => {
             return updateObject(state, {content: action.text, file: '', image: ''});
         case actionTypes.ADD_EMOJI:
             return updateObject(state, {content: state.content + action.text, file: '', image: '', emojiList: state.emojiList.concat({name: action.text, position: action.position})});
+        default:
+            return state;
     }
-    return state;
 };
 
 export default reducer;

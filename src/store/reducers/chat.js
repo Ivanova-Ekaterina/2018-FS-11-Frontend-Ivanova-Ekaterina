@@ -39,8 +39,9 @@ const reducer = ( state = initialState, action ) => {
                     file: '',
                     emojiList: action.emojiList
                 })});
+        default:
+            return state;
     }
-    return state;
 };
 
 export default reducer;

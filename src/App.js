@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ChatList from "./components/chat-list/ChatList";
 import {Chat} from "./components/Chat/Chat";
 import {Enter} from "./components/Enter/Enter";
@@ -15,7 +15,6 @@ class App extends Component {
     socket = new WebSocket('ws://localhost:8080');
     componentDidMount() {
         this.props.checkToken();
-      //  const socket = new WebSocket('ws://localhost:8080');
         this.socket.onopen = () => {
             this.socket.send(JSON.stringify({data: "Hi", chat: "1", emojiList: []}));
             console.log('ok');
@@ -33,7 +32,6 @@ class App extends Component {
             (
                 <Route exact path='/enter' component={Enter} />
             );
-        //if(this.props.isAuthorized === true) {
         if(props.token !== null) {
             route = (
                     <Route exact path='/enter' component={Profile} />
@@ -45,7 +43,7 @@ class App extends Component {
                     {route}
                     {console.log("chats", props.chat)}
                     {props.chats !== undefined ?  (props.chats.map((el, id) =>
-                        <Route exact path={'/chats/' + el.topic} render={() => <Chat  key={id} name={el.topic} chat={el.id} socket={this.socket}/>} />))
+                        <Route exact path={`/chats/${el.topic}`} render={() => <Chat  key={id} name={el.topic} chat={el.id} socket={this.socket}/>} />))
                      : ''}
                     <Route exact path='/' component={StartPage} />
                     <Route exact path='/chats' component={ChatList} />

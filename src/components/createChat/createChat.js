@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.module.css';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import * as actionTypes from "../../store/actions/actionTypes";
 import connect from "react-redux/es/connect/connect";
 import workerCode from "../../SharedWorker";
@@ -24,7 +24,7 @@ class CreateChat extends Component {
             is_group_chat: false
         };
         add([chat]);
-        var req = {
+        let req = {
             reqData: 'add_chat',
             topic: topic,
             nick1: nick1,
@@ -61,7 +61,7 @@ class CreateChat extends Component {
             const reader = new FileReader();
             reader.addEventListener('loadend', (event) => {
                 const worker = new SharedWorker(event.target.result);
-                worker.port.addEventListener('message', this.onWorkerCreateChat.bind(this));
+                worker.port.addEventListener('message', CreateChat.onWorkerCreateChat.bind(this));
                 worker.port.start();
                 window.addEventListener('beforeunload', () => {
                     worker.port.postMessage('disconnect');
@@ -72,7 +72,7 @@ class CreateChat extends Component {
             reader.readAsDataURL(workerFile);
         });
     }
-    onWorkerCreateChat (event) {
+    static onWorkerCreateChat (event) {
         console.log(event.data);
     }
 }

@@ -25,7 +25,7 @@ class MessageForm extends Component {
         return (
             <div className={styles.drop}>
                 <ScrollToBottom mode="bottom" className={styles.scroll}>
-                    <DropZone onDrop={(file, text) => this.handleDrop(file.name) }>
+                    <DropZone onDrop={(file) => this.handleDrop(file.name) }>
                         { () =>
                             <div className={styles.messages}>
                                 {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import styles from './styles.module.css';
-import * as actionTypes from "../../store/actions/actionTypes";
 import {connect} from 'react-redux';
 import CreateChat from "../createChat/createChat";
 
@@ -20,7 +19,7 @@ class ChatList extends Component {
         if (props.chats !== undefined) {
             chatItems = props.chats.map((el, id) =>
                 <li key={id} className={styles.chat_li}>
-                    <Link to={'/chats/' + el.topic}>{el.topic}</Link>
+                    <Link to={`/chats/${el.topic}`}>{el.topic}</Link>
                 </li>
             );
         }
@@ -55,10 +54,4 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        AddChat: (chats) => dispatch({type: actionTypes.GET_CHATS, chats: chats}),
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+export default connect(mapStateToProps)(ChatList);
