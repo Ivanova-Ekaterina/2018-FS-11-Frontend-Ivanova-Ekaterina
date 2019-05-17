@@ -41,7 +41,7 @@ class CreateChat extends Component {
             <div hidden={props.hidden} className={styles.createChat}>
                 <li className={styles.CreateLi}>
                     <label className={styles.labelCreateChat}>Название чата</label>
-                <input type="text" onChange={(event) => this.handleInputTopic(event)}/>
+                    <input type="text" onChange={(event) => this.handleInputTopic(event)}/>
                 </li>
                 <li className={styles.CreateLi}>
                     <label className={styles.labelCreateChat}>Ник участника</label>

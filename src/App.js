@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import ChatList from "./components/chat-list/ChatList";
-import {Chat} from "./components/Chat/Chat";
+import Chat from "./components/Chat/Chat";
 import {Enter} from "./components/Enter/Enter";
 import Profile from "./components/Profile/Profile";
 import './App.css';
@@ -10,6 +10,10 @@ import connect from "react-redux/es/connect/connect";
 import * as actionTypes from "./store/actions/actionTypes";
 import StartPage from "./components/StartPage/StartPage";
 import SignUp from "./components/SignUp/SignUp";
+
+export const ChatContext = React.createContext();
+export const ChatProvider = ChatContext.Provider;
+export const ChatConsumer = ChatContext.Consumer;
 
 class App extends Component {
     socket = new WebSocket('ws://localhost:8080');
@@ -43,7 +47,7 @@ class App extends Component {
                     {route}
                     {console.log("chats", props.chat)}
                     {props.chats !== undefined ?  (props.chats.map((el, id) =>
-                        <Route exact path={`/chats/${el.topic}`} render={() => <Chat  key={id} name={el.topic} chat={el.id} socket={this.socket}/>} />))
+                            <Route exact path={`/chats/${el.topic}`} render={() =><ChatProvider value={{'name':el.topic, 'chat': el.id, 'socket': this.socket} }> <Chat key={id}/> </ChatProvider>} />))
                      : ''}
                     <Route exact path='/' component={StartPage} />
                     <Route exact path='/chats' component={ChatList} />
