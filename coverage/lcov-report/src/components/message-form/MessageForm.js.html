@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/message-form/MessageForm.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/message-form</a> MessageForm.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/26</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, { Component } from 'react';</span>
+<span class="cstat-no" title="statement not covered" >import ScrollToBottom from 'react-scroll-to-bottom';</span>
+<span class="cstat-no" title="statement not covered" >import InputForm from '../form-input/InputForm';</span>
+<span class="cstat-no" title="statement not covered" >import DropZone from 'react-drop-zone';</span>
+<span class="cstat-no" title="statement not covered" >import styles from './styles.module.css';</span>
+<span class="cstat-no" title="statement not covered" >import {connect} from 'react-redux';</span>
+<span class="cstat-no" title="statement not covered" >import * as actionTypes from "../../store/actions/actionTypes";</span>
+<span class="cstat-no" title="statement not covered" >import Emoji from "../emoji/emoji";</span>
+&nbsp;
+class MessageForm extends Component {
+<span class="fstat-no" title="function not covered" >    handleDrop</span>(file)
+    {
+<span class="cstat-no" title="statement not covered" >        this.props.SendFile(file);</span>
+    }
+<span class="fstat-no" title="function not covered" >    render</span>() {
+        const props = <span class="cstat-no" title="statement not covered" >this.props;</span>
+        let this_mes = <span class="cstat-no" title="statement not covered" >[];</span>
+        let this_emoji = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >        this.props.messages.forEach(<span class="fstat-no" title="function not covered" >function(</span>mes){</span>
+<span class="cstat-no" title="statement not covered" >            if (mes.chat === props.chat) {</span>
+<span class="cstat-no" title="statement not covered" >                this_mes.push(mes);</span>
+<span class="cstat-no" title="statement not covered" >                this_emoji.push(mes.emojiList);</span>
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;div className={styles.drop}&gt;
+                &lt;ScrollToBottom mode="bottom" className={styles.scroll}&gt;
+                    &lt;DropZone onDrop={(<span class="fstat-no" title="function not covered" >file) =&gt; <span class="cstat-no" title="statement not covered" >this.handleDrop(file.name) }&gt;</span></span>
+                        { <span class="fstat-no" title="function not covered" >() =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                            &lt;div className={styles.messages}&gt;</span>
+                                {
+                                    this_mes.map(<span class="fstat-no" title="function not covered" >(m</span>es, id) =&gt;
+<span class="cstat-no" title="statement not covered" >                                    &lt;div className={styles[mes.user]} key={id}&gt;</span>
+&nbsp;
+                                        {mes.emojiList.length !== 0 ? mes.content.substring(0, this_emoji[id][0].position): mes.content}
+                                        {this_emoji[id].map(<span class="fstat-no" title="function not covered" >(e</span>m, iid,arr) =&gt;
+<span class="cstat-no" title="statement not covered" >                                            &lt;div className={styles.emojiClass} key={iid}&gt;</span>
+                                                &lt;Emoji name={em.name.substring(1)}/&gt;&lt;label className={styles.emojiLabel}&gt;
+                                                    {mes.content.substring(arr[iid].position, iid !== arr.length - 1? arr[iid+1].position: mes.content.length).replace(em.name, '')}
+                                                &lt;/label&gt;
+                                            &lt;/div&gt;)}
+                                       {mes.image === true ?
+                                            &lt;img src={mes.file} alt="error" className={styles.imgMessage}/&gt; :
+                                            (mes.file === '' ? '' : 'file: ' + mes.file)
+                                        }
+                                    &lt;/div&gt;
+                                )}
+                            &lt;/div&gt;
+                        }
+                    &lt;/DropZone&gt;
+                &lt;/ScrollToBottom&gt;
+                &lt;InputForm placeholder="Сообщение" className = {styles.input} chat={props.chat} socket={props.socket}/&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+&nbsp;
+const mapStateToProps = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >state</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+&nbsp;
+        id: state.msgs.id,
+        file: state.msg.file,
+        messages: state.msgs.messages
+    }
+};
+&nbsp;
+const mapDispatchToProps = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >dispatch</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        SendFile: (<span class="fstat-no" title="function not covered" >file) =&gt; <span class="cstat-no" title="statement not covered" >dispatch(</span>{type: actionTypes.SEND_FILE, file})</span>
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MessageForm);</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri May 17 2019 04:47:41 GMT+0300 (Moscow Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
