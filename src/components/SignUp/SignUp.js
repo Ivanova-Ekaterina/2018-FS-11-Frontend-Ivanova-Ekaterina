@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './styles.module.css';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Input from "../Input/Input";
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions'
@@ -89,7 +89,7 @@ class SignUp extends Component {
             valid: !invalid});
     };
 
-    handleFormConfirm = (event) => {
+    handleFormConfirm = () => {
         const result = Object
             .keys(this.state.loginForm)
             .reduce((res, key) => {
@@ -159,7 +159,7 @@ class SignUp extends Component {
             const reader = new FileReader();
             reader.addEventListener('loadend', (event) => {
                 const worker = new SharedWorker(event.target.result);
-                worker.port.addEventListener('message', this.onWorkerCreateUser.bind(this));
+                worker.port.addEventListener('message', SignUp.onWorkerCreateUser.bind(this));
                 worker.port.start();
                 window.addEventListener('beforeunload', () => {
                     worker.port.postMessage('disconnect');
@@ -170,7 +170,7 @@ class SignUp extends Component {
             reader.readAsDataURL(workerFile);
         });
     }
-    onWorkerCreateUser (event) {
+    static onWorkerCreateUser (event) {
         console.log('User', event.data);
     }
 }

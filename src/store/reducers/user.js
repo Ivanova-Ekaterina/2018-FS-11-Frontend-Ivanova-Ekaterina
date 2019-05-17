@@ -14,8 +14,9 @@ const reducer = ( state = initialState, action ) => {
             return updateObject(state, {user: action.login, password: action.password, isAuthorized: true});
         case actionTypes.USER_EXIT:
             return updateObject(state, {user: null, password: null, isAuthorized: false});
+        default:
+            return state;
     }
-    return state;
 };
 
 export default reducer;

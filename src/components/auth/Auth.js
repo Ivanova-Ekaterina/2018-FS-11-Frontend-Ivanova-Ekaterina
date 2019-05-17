@@ -50,7 +50,7 @@ class Auth extends Component {
         valid: false,
     };
     findUser(nick) {
-        var req = {
+        const req = {
             reqData: 'find_user',
             nick: nick
         };
