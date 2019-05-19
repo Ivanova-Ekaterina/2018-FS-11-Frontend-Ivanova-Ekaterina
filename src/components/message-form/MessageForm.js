@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 import {connect} from 'react-redux';
 import * as actionTypes from "../../store/actions/actionTypes";
 import Emoji from "../emoji/emoji";
+import ChatContext from '../../App';
 
 class MessageForm extends Component {
     handleDrop(file)
@@ -13,11 +14,11 @@ class MessageForm extends Component {
         this.props.SendFile(file);
     }
     render() {
-        const props = this.props;
+        const chat = this.context.chat;
         let this_mes = [];
         let this_emoji = [];
         this.props.messages.forEach(function(mes){
-            if (mes.chat === props.chat) {
+            if (mes.chat === chat) {
                 this_mes.push(mes);
                 this_emoji.push(mes.emojiList);
             }
@@ -49,12 +50,12 @@ class MessageForm extends Component {
                         }
                     </DropZone>
                 </ScrollToBottom>
-                <InputForm placeholder="Сообщение" className = {styles.input} chat={props.chat} socket={props.socket}/>
+                <InputForm placeholder="Сообщение" className = {styles.input}/>
             </div>
         );
     }
 }
-
+MessageForm.contextType = ChatContext;
 const mapStateToProps = state => {
     return {
 

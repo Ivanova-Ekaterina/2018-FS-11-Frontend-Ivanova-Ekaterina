@@ -24,27 +24,27 @@ class ChatList extends Component {
             );
         }
         return (
-                <div>
-                    <div className={styles.upperPanel}>
-                        <div className={styles.panelButtons}>
-                            <div className={`${styles.rectangle} ${styles.square}`}/>
-                            <div className={`${styles.rectangle} ${styles.circle}`}/>
-                            <div className={styles.triangle}/>
-                        </div>
+            <div>
+                <div className={styles.upperPanel}>
+                    <div className={styles.panelButtons}>
+                        <div className={`${styles.rectangle} ${styles.square}`}/>
+                        <div className={`${styles.rectangle} ${styles.circle}`}/>
+                        <div className={styles.triangle}/>
                     </div>
-                    <div className={styles.header}>
-                    <Link to='/'><div className={`${styles.icon} ${styles.menu}`}/></Link>
-                        <div>
-                            <label>Chats</label>
-                        </div>
-                        <div className={`${styles.icon} ${styles.search}`}/>
-                        <div className={`${styles.icon} ${styles.add_chat}`} onClick={(event) => this.handleOpenCreateChat(event)}/>
-                    </div>
-                    <CreateChat hidden={this.state.showCreateChat} className={styles.createChat}/>
-                    <ul className={styles.chatListUl}>
-                        {chatItems}
-                    </ul>
                 </div>
+                <div className={styles.header}>
+                    <Link to='/'><div className={`${styles.icon} ${styles.menu}`}/></Link>
+                    <div>
+                        <label>Chats</label>
+                    </div>
+                    <div className={`${styles.icon} ${styles.search}`}/>
+                    <div className={`${styles.icon} ${styles.add_chat}`} onClick={(event) => this.handleOpenCreateChat(event)}/>
+                </div>
+                <CreateChat hidden={this.state.showCreateChat} className={styles.createChat}/>
+                <ul className={styles.chatListUl}>
+                    {chatItems}
+                </ul>
+            </div>
         );
     }
 }

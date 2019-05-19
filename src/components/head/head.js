@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import {Link} from "react-router-dom";
-
-export class Head extends Component {
-    render() {
-        const props = this.props;
+import {BrowserRouter}  from 'react-router-dom';
+import {ChatConsumer} from '../../App';
+const Head = () => (
+    <ChatConsumer>
+        {context => {
         return (
             <form>
                 <div className={styles.upperPanel}>
@@ -15,10 +16,10 @@ export class Head extends Component {
                     </div>
                 </div>
                 <div className={styles.header}>
-                    <Link to='/chats' ><div className={`${styles.icon} ${styles.back}`} onClick={this.back}/></Link>
+                    <Link to='/chats' ><div className={`${styles.icon} ${styles.back}`} onClick={BrowserRouter.goBack}/></Link>
                     <div className={styles.photo}/>
                     <div className={styles.user}>
-                        <label className={styles.name}>{props.name}</label>
+                        <label className={styles.name}>{context.name}</label>
                         <label className={styles.lastTime}>была 2 часа назад</label>
                     </div>
                     <div className={`${styles.icon} ${styles.search}`}/>
@@ -26,5 +27,7 @@ export class Head extends Component {
                 </div>
             </form>
         );
-    }
-}
+}}
+    </ChatConsumer>);
+
+export default Head;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {EmojiPanel} from "../emojiPanel/emojiPanel";
+import EmojiPanel from "../emojiPanel/emojiPanel";
 import styles from './styles.module.css';
 import * as actionTypes from '../../store/actions/actionTypes';
+import {ChatConsumer} from '../../App';
 
  class InputForm extends Component {
 
@@ -48,14 +49,18 @@ import * as actionTypes from '../../store/actions/actionTypes';
     render() {
         const props = this.props;
         return (
+            <ChatConsumer>
+                {context => {
+                    return (
             <div>
-                <EmojiPanel hidden={this.state.showEmoji} chat={props.chat} />
+
+                <EmojiPanel hidden={this.state.showEmoji} chat={context.chat} />
 
                 <form  className={styles.forminput}  onSubmit={(event) => {event.preventDefault();
                                                         this.props.clearInput();
                                                         this.setState({showEmoji: true});
                                                         if (this.props.value !== ''){
-                                                            this.props.socket.send(JSON.stringify({data: this.props.value, chat: this.props.chat, emojiList: this.props.emojiList}));
+                                                            context.socket.send(JSON.stringify({data: this.props.value, chat: context.chat, emojiList: this.props.emojiList}));
                                                             this.props.SendMessage(this.props.value, props.chat, this.props.emojiList)}}}>
 
                     <input type="text"  className={styles.input} value={this.props.value} onChange = {(event) => this.props.Input(event.target.value)}/>
@@ -63,13 +68,16 @@ import * as actionTypes from '../../store/actions/actionTypes';
                         <div className={this.props.file !== '' ? `${styles.indicator_on} ${styles.pulse}` : `${styles.indicator_off} ${styles.pulse}`}/>
                         <label className={styles.filelabel}>
                            <div className={`${styles.icon} ${styles.attach} ${styles.pulse}`}/>
-                            <input type="file" className={styles.file} onInput={(event) => this.handleAttach(event, props.chat)}/>
+                            <input type="file" className={styles.file} onInput={(event) => this.handleAttach(event, context.chat)}/>
                         </label>
-                        <div className={`${styles.icon} ${styles.position} ${styles.pulse}`} onClick={(event) => this.handleGetPosition(event, props.chat, this.props.emojiList)}/>
+                        <div className={`${styles.icon} ${styles.position} ${styles.pulse}`} onClick={(event) => this.handleGetPosition(event, context.chat, this.props.emojiList)}/>
                         <div className={`${styles.icon} ${styles.emoji} ${styles.pulse}`} onClick={(event) => this.handleOpenEmoji(event)}/>
                     </slot>
                 </form>
             </div>
+                        );
+                }}
+            </ChatConsumer>
         );
     }
 }

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import Emoji from "../emoji/emoji";
-export class EmojiPanel extends Component {
-    render() {
-        const props = this.props;
+
+
+const EmojiPanel = (props) => {
         return (
             <div className={props.hidden ? `${styles.emojiPanel} ${styles.hidden}`: `${styles.emojiPanel}`} hidden={props.hidden} >
                 <Emoji name="smiling-face" hidden={props.hidden} chat={props.chat}/>
@@ -17,5 +17,6 @@ export class EmojiPanel extends Component {
                 <Emoji name="broccoli" hidden={props.hidden} chat={props.chat}/>
             </div>
         );
-    }
-}
+};
+
+export default EmojiPanel;
